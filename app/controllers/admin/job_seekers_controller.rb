@@ -21,7 +21,7 @@ class Admin::JobSeekersController < AdminBaseController
 
     respond_to do |format|
       if @job_seeker.save
-        format.html { redirect_to @job_seeker, notice: 'Job seeker was successfully created.' }
+        format.html { redirect_to job_seekers_url, notice: 'Job seeker was successfully created.' }
         format.json { render :show, status: :created, location: @job_seeker }
       else
         flash[:error] = @job_seeker.errors.full_messages.map{|x| "<span>#{x}</span>" }.join('<br/>')        
@@ -34,7 +34,7 @@ class Admin::JobSeekersController < AdminBaseController
   def update        
     respond_to do |format|
       if @job_seeker.update(job_seeker_params)
-        format.html { redirect_to @job_seeker, notice: 'Job seeker was successfully updated.' }
+        format.html { redirect_to :action=> :index, notice: 'Job seeker was successfully updated.' }
         format.json { render :show, status: :ok, location: @job_seeker }
       else
         flash[:error] = @job_seeker.errors.full_messages.map{|x| "<span>#{x}</span>" }.join('<br/>')
@@ -47,7 +47,7 @@ class Admin::JobSeekersController < AdminBaseController
   def destroy
     @job_seeker.destroy
     respond_to do |format|
-      format.html { redirect_to job_seekers_url, notice: 'Job seeker was successfully destroyed.' }
+      format.html { redirect_to :action=> :index, notice: 'Job seeker was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -68,11 +68,13 @@
   </div>
   <div class="row">
     <%= f.label :country,class: "left" %>
-    <span class="right"><%= f.select :country_id ,Country.all.map{|x| [x.name,x.id] },prompt: 'Select Country' %></span>
+    <span class="right">
+    <%= f.select :country_id,options_for_select(Country.all.map{|x| [x.name,x.id] }) ,prompt: 'Select Country' %>      
+    </span>
   </div>
   <div class="row">
     <%= f.label :state,class: "left" %>
-    <span class="right"><%= f.select :state_id,[] ,prompt: 'Select State' %></span>
+    <span class="right"><%= f.select :state_id,options_for_select(State.all.map{|x| [x.name,x.id]}),prompt: 'Select State' %></span>
   </div>
   <div class="row">
     <%= f.label :city,class: "left" %>

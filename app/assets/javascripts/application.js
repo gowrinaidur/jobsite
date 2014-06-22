@@ -18,7 +18,7 @@
 //= require_tree .
 
 $(document).ready(function(){
-	$('select#job_seeker_country_id').on('change', function(event) {
+	$('#job_seeker_country_id').on('change', function(event) {
 		$.ajax({
 		  url: "/get_states?country_id="+$(this).val(),
 		  dataType: "json",
