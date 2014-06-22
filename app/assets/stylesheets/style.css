@@ -79,7 +79,7 @@ a:hover {background: transparent !important;	}
 /*----/Right Panel----*/
 
 /*----Footer Panel----*/
-#footermainPan{background:url(footerbg.gif) 0 0 repeat-x #6B6854; color:#fff; position:relative; margin:0 auto; height:227px; clear:both;}
+#footermainPan{background:url(footerbg.gif) 0 0 repeat-x #6B6854; color:#fff; position:relative; margin:0 auto; height:150px; clear:both;}
 #footerPan{width:691px; position:relative; margin:0 auto; font:12px/15px "Trebuchet MS",Arial, Helvetica, sans-serif; font-weight:normal;}
 
 #footerPan ul{width:546px; position:absolute; top:85px; left:42px;}
