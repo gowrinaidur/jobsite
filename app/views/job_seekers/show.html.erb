@@ -1,0 +1,132 @@
+<% content_for :side_menu do %>
+  <%= render :partial=>"shared/job_seeker_menu" if current_user %>
+<% end %>
+<h3>Resume</h3>  
+<table class="resume-view">
+  <tr>
+    <th>First Name:</th>
+    <td>
+      <%= @job_seeker.user.first_name %>
+    </td>
+  </tr>
+  <tr>
+    <th>Last Name:</th>
+    <td>
+      <%= @job_seeker.user.last_name %>
+    </td>
+  </tr>
+  <tr>
+    <th>Email:</th>
+    <td>
+      <%= @job_seeker.user.email %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Phone:</th>
+    <td>
+      <%= @job_seeker.user.phone %>
+    </td>
+  </tr>  
+  
+  <tr>
+    <th>Offer type:</th>
+    <td><%= JobSeeker::OFFER_TYPE[@job_seeker.offer_type] %></td>
+  </tr>
+
+
+  <tr>
+    <th>Availble to start:</th>
+    <td>
+      <%= @job_seeker.availble_to_start %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Employment status:</th>
+    <td>
+      <%= JobSeeker::EMPLOYMENT_STATUS[@job_seeker.employment_status] %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Graduation year:</th>
+    <td>
+      <%= @job_seeker.graduation_year %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>City:</th>
+    <td>
+      <%= @job_seeker.city %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>State:</th>
+    <td>
+      <%= @job_seeker.state.name if @job_seeker.state_id %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Country:</th>
+    <td>
+      <%= @job_seeker.country.name if @job_seeker.country_id %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Highest educaton:</th>
+    <td>
+      <%= JobSeeker::HIGHEST_EDUCATION[@job_seeker.highest_education] %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>School:</th>
+    <td>
+      <%= @job_seeker.school %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Major:</th>
+    <td>
+      <%= @job_seeker.major %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Work experience:</th>
+    <td><%= JobSeeker::WORK_EXPERIENCE[@job_seeker.work_experience] %></td>
+  </tr>
+
+  <tr>
+    <th>Position interested in:</th>
+    <td><%= JobSeeker::POSITION_INTERSTED_IN[@job_seeker.position_interested_in] %></td>
+  </tr>
+
+
+  <tr>
+    <th>Resume status:</th>
+    <td><%= @job_seeker.resume_status==true ? 'Active' : 'Suspended' %></td>
+  </tr>
+  
+  <tr>
+    <th>How did you find us:</th>
+    <td>
+      <%= @job_seeker.how_did_you_find_us %>
+    </td>
+  </tr>
+</table>
+<style type="text/css">
+th{
+  width: 50%;  
+  text-align: left;
+}
+td{
+  width: 50%;
+}
+</style>

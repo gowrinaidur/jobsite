@@ -1,0 +1,53 @@
+<%= form_for([:admin,@admin]) do |f| %> 
+  
+  <div class="new_admin_form">
+    <%= f.fields_for :user do |user_form| %>
+      
+      <div class="field">
+        <%= user_form.label :first_name, class: "label_field" %>
+        <%= user_form.text_field :first_name , autofocus: true,class: "txt_field"%>
+      </div>
+      
+      <div class="field">
+        <%= user_form.label :last_name %>
+        <%= user_form.text_field :last_name,class: "txt_field" %>
+      </div>
+
+      <div class="field">
+        <%= user_form.label :email %>
+        <%= user_form.email_field :email,class: "txt_field" %>
+      </div>
+
+      <div class="field">
+        <%= user_form.label :username %>
+        <%= user_form.text_field :username, class: "txt_field" %>
+      </div>
+
+      <div class="field">
+        <%= user_form.label :password %>
+        <%= user_form.password_field :password, autocomplete: "off",class: "txt_field" %>
+      </div>
+
+      <div class="field">
+        <%= user_form.label :password_confirmation %>
+        <%= user_form.password_field :password_confirmation, autocomplete: "off",class: "txt_field" %>
+      </div>
+
+      <div class="field">
+        <%= user_form.label :phone %>
+        <%= user_form.text_field :phone,class: "txt_field" %>
+      </div>
+    
+    <% end %>
+
+    <div class="field">
+      <%= f.label :status %>
+      <%= f.select :status ,Admin::STATUSES,class: "txt_field" %>
+    </div>
+
+    <div class="submit-part">
+      <%= f.submit 'Save',class: 'btn btn-primary' %>
+    </div>
+
+  </div>
+<% end %>

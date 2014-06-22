@@ -1,0 +1,9 @@
+<ul>
+	<li><%= link_to "Home",job_seekers_path %></li>
+	<li><%= link_to "My Account",edit_job_seeker_path(current_user.accountable) %></li>
+	<li><%= link_to "Resume",job_seeker_path(current_user.accountable) %> </li>
+	<li><%= link_to "Jobs","#" %></li>
+	<li><%= link_to "Resume Blast", "#" %></li>
+	<li><%= link_to "Referals","#"%></li>									
+	<li><%= link_to "Help", "#" %></li>
+</ul>

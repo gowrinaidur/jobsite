@@ -1,0 +1,116 @@
+<%= nested_form_for(@job_seeker, :html => {:multipart => true}) do |f| %>  
+  <%= f.fields_for :user do |user_form| %>
+    <div class="row">
+      <%= user_form.label :first_name ,class: "left" %>          
+      <span class="right"><%= user_form.text_field :first_name , autofocus: true %></span>
+    </div>
+    
+    <div class="row">
+      <%= user_form.label :last_name ,class: "left" %>
+      <span class="right"><%= user_form.text_field :last_name %></span>
+    </div>
+
+    <div class="row">
+      <%= user_form.label :email,class: "left" %>
+      <span class="right"><%= user_form.email_field :email %></span>
+    </div>
+
+    <div class="row">
+      <%= user_form.label :username,class: "left" %>
+      <span class="right"><%= user_form.text_field :username %></span>
+    </div>
+
+    <div class="row">
+      <%= user_form.label :password,class: "left" %>
+      <span class="right"><%= user_form.password_field :password, autocomplete: "off" %></span>
+    </div>
+
+    <div class="row">
+      <%= user_form.label :password_confirmation,class: "left" %>
+      <span class="right"><%= user_form.password_field :password_confirmation, autocomplete: "off" %></span>
+    </div>
+
+    <div class="row">
+      <%= user_form.label :phone,class: "left" %>
+      <span class="right"><%= user_form.text_field :phone %></span>
+    </div>
+
+  <% end %>
+
+  <div class="row">
+    <%= f.label :offer_type,class: "left" %>
+    <span class="right"><%= f.select :offer_type ,JobSeeker::OFFER_TYPE.invert %></span>
+  </div>
+  
+  <% email_checks = f.object.mail_notifications.reject(&:blank?).map(&:to_i) %>
+  <% JobSeeker::MAILNOTIFICATIONS.each do |mail,value| %>
+    <div class="row">
+      <%= f.label value,class: "left" %>      
+      <span class="right"><%= check_box_tag "job_seeker[mail_notifications][]" ,mail,email_checks.include?(mail) %>
+    </span>
+    </div>      
+  <% end %>
+  <div class="row">
+    <%= f.label :how_did_you_find_us ,class: "left"%>
+    <span class="right"><%= f.text_field :how_did_you_find_us %></span>
+  </div>
+  <div class="row">
+    <%= f.label :availble_to_start,class: "left" %>    
+    <span class="right"><%= f.text_field :availble_to_start %><%= calendar_for('job_seeker_availble_to_start') %></span>
+  </div>
+  <div class="row">
+    <%= f.label :employment_status,class: "left" %>
+    <span class="right"><%= f.select :employment_status ,JobSeeker::EMPLOYMENT_STATUS.invert %></span>
+  </div>
+  <div class="row">
+    <%= f.label :graduation_year ,class: "left"%>    
+    <span class="right"><%= f.text_field :graduation_year %><%= calendar_for('job_seeker_graduation_year') %></span>
+  </div>
+  <div class="row">
+    <%= f.label :country,class: "left" %>
+    <span class="right"><%= f.select :country_id ,Country.all.map{|x| [x.name,x.id] },prompt: 'Select Country' %></span>
+  </div>
+  <div class="row">
+    <%= f.label :state,class: "left" %>
+    <span class="right"><%= f.select :state_id,[] ,prompt: 'Select State' %></span>
+  </div>
+  <div class="row">
+    <%= f.label :city,class: "left" %>
+    <span class="right"><%= f.text_field :city %></span>
+  </div>
+  <div class="row">
+    <%= f.label :highest_education,class: "left" %>
+    <span class="right"><%= f.select :highest_education ,JobSeeker::HIGHEST_EDUCATION.invert %></span>
+  </div>
+  <div class="row">
+    <%= f.label :school,class: "left" %>
+    <span class="right"><%= f.text_field :school %></span>
+  </div>
+  <div class="row">
+    <%= f.label :major,class: "left" %>
+    <span class="right"><%= f.text_field :major %></span>
+  </div>
+  <div class="row">
+    <%= f.label :work_experience ,class: "left"%>
+    <span class="right"><%= f.select :work_experience ,JobSeeker::WORK_EXPERIENCE.invert %></span>
+  </div>
+  <div class="row">
+    <%= f.label :position_interested_in,class: "left" %>
+    <span class="right"><%= f.select :position_interested_in , JobSeeker::POSITION_INTERSTED_IN.invert %></span>
+  </div>
+  <div class="row">
+    <%= f.label :resume,class: "left"%>
+    <span class="right"><%= f.file_field :resume %></span>
+  </div>
+  <div class="row">
+    <%= f.label :resume_status,class: "left" %>
+    <span class="right"><%= f.check_box :resume_status %></span>
+  </div>
+  <div class="row">
+    <%= f.label :terms_and_conditions,class: "left" %>
+    <span class="right"><%= f.check_box :terms_and_conditions %></span>
+  </div>
+  <div class="submit-part">
+    <%= f.submit %>
+  </div>
+<% end %>  

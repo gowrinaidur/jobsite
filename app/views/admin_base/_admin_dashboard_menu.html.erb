@@ -1,0 +1,16 @@
+<div class="header">
+  <div class="stats">
+    <p class="stat"><span class="number"><%= Admin.count %></span>Admins</p>
+    <p class="stat"><span class="number"><%= JobSeeker.count %></span>JobSeekers</p>
+    <p class="stat"><span class="number"><%= '0' %></span>Employers</p>
+  </div>        
+  <h1 class="page-title">Dashboard</h1>
+</div>
+  
+<ul class="breadcrumb">
+  <li>
+    <%= link_to "Home" , admin_path %>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">Dashboard</li>
+</ul>

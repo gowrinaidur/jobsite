@@ -1,0 +1,45 @@
+<% content_for(:admin_menu) do %>
+  <div class="header">            
+    <h1 class="page-title">Countries</h1>
+  </div>
+  <ul class="breadcrumb">
+    <li>
+      <%= link_to "Home" , admin_path %>
+      <span class="divider">/</span>
+    </li>
+    <li class="active">Countries</li>
+  </ul>  
+<% end %>
+<div class="btn-toolbar">
+    <%= link_to '<i class="icon-plus"></i> New Country'.html_safe, new_admin_country_path , class: "btn btn-primary" %>    
+    <button class="btn">Import</button>
+    <button class="btn">Export</button>
+  <div class="btn-group">    
+  </div>
+</div>
+<div class="well">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Code</th>
+        <th style="width: 26px;"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @countries.each_with_index do |country,index| %>
+        <tr>
+          <td><%= index+1 %></td>
+          <td><%= country.name %></td>
+          <td><%= country.code %></td>
+          <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_admin_country_path(country) %></td>
+          <td><%= link_to '<i class="icon-remove"></i>'.html_safe, admin_country_path(country), method: :delete , data: { confirm: 'Are you sure?' } %></td>        
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="digg_pagination">
+  <%= will_paginate @countries, :container => false %>
+</div>

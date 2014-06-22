@@ -1,0 +1,7 @@
+<% content_for :side_menu do %>
+	<%= render :partial=>"shared/job_seeker_menu" if current_user%>
+<% end %>
+<div class="middle-blk form-box">
+	<h3>Edit JobSeeker</h3>
+	<%= render 'form' %>
+</div>

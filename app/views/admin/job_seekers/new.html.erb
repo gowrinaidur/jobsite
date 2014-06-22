@@ -1,0 +1,19 @@
+<% content_for(:admin_menu) do %>
+  <div class="header">            
+    <h1 class="page-title">New JobSeeker</h1>
+  </div>
+  <ul class="breadcrumb">
+    <li>
+      <%= link_to "Home" , admin_path %>
+      <span class="divider">/</span>
+    </li>
+    <li>
+      <%= link_to "JobSeekers" , admin_job_seekers_path %>
+      <span class="divider">/</span>
+    </li>
+    <li class="active">New JobSeeker</li>
+  </ul>  
+<% end %>
+<div class="new_header">
+	<%= render 'form' %>
+</div>

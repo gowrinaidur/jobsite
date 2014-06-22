@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jobsite</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>  
+</head>
+
+<body>
+	<!-- <p class="notice"><%= notice %></p>
+  	<p class="alert"><%= alert %></p> -->
+	<div id="mainPan">
+  	<!-- left ads section start -->
+		<div class="ads-section ads-scroll-des">
+			<!-- <marquee direction="up"> -->
+			<ul>
+				<% for i in 1..5 %>
+					<li><%= image_tag("Adds/add#{i}.jpg",height: '100', width: '190') %></li>
+				<% end %>				
+			</ul>
+		<!-- </marquee> -->
+		</div>
+  
+  <!-- left ads section start -->
+
+  <!-- left nav menu section start -->
+
+	  	<div id="leftPan">
+	  		<div id="leftTopPan">
+				<a href="index.html"><%= image_tag("jobsite.png", alt:"Consultant", size: "16*39", title: "Consultant", border:"0") %></a> 
+			</div>
+						
+			<%= content_for?(:side_menu) ? yield(:side_menu) : (render :partial => "/shared/default_menu") %>
+			
+			
+			<fieldset class="category-search-blk">
+				<legend class="classify-category">Jobs by category</legend>
+				<table>
+					<tr><td><a href="#">Accounting (<em>2</em>)</a></td></tr>
+					<tr><td><a href="#">Administration (<em>4</em>)</a></td></tr>
+					<tr><td><a href="#">Civil (<em>12</em>)</a></td></tr>
+					<tr><td><a href="#">Construction (<em>1</em>)</a></td></tr>
+					<tr><td><a href="#" class="floatright">more(12)..</a></td></tr>
+				</table>
+			</fieldset>
+
+			<fieldset class="category-search-blk">
+				<legend class="type-category">Job Type</legend>
+				<table>
+					<tr><td><a href="#">Full-time (<em>1</em>)</a></td></tr>
+					<tr><td><a href="#">Partnership (<em>0</em>)</a></td></tr>
+					<tr><td><a href="#">Part-Time (<em>2</em>)</a></td></tr>
+					<tr><td><a href="#">Training (<em>22</em>)</a></td></tr>
+				</table>
+			</fieldset>
+
+			<fieldset class="category-search-blk">
+				<legend class="location-category">Location</legend>
+				<table>
+					<tr><td><a href="#">Kolkata (<em>0</em>)</a></td></tr>
+					<tr><td><a href="#">Mumbai (<em>2</em>)</a></td></tr>
+					<tr><td><a href="#">Ahmedabad (<em>222</em>)</a></td></tr>
+					<tr><td><a href="#" class="floatright">more (<em>2</em>)..</a></td></tr>
+				</table>
+			</fieldset>
+	  	</div>
+
+  <!-- left nav menu section end -->
+  
+  <!-- right part start -->
+  	<div id="rightPan">  		
+  		<div class="links-blk">
+  			<% if current_user %>
+					<span class="text-blk">Welcome <%= current_user.to_s %></span>
+					<%= link_to("<img src='/assets/logout-icon.png' align='absmiddle'>".html_safe, destroy_user_session_path, :method => :delete,title: 'Logout') %>					
+  			<% else %>
+  				<span class="text-blk">Job Seekers: </span><%= link_to "Login",new_user_session_path %> | <%= link_to "Sign Up",new_job_seeker_path %>
+					<span class="text-blk">Employers: </span><a href="#">Login</a> | <a href="#">Sign Up</a>
+  			<% end %>
+  		</div>
+  		<div class="midle-cont">
+	  		<% if flash.present? %>
+	        <%flash.each do |type,message|%>
+	          <div id="flash" class="flashmsgs">
+	          	<a href="javascript:;" onclick="hideFlshDiv()" class="closebtn"></a>
+	            <div class="message_<%=type %>" style="z-index:1000px">
+	            	<%= message.titleize.gsub("<Br/>","<br/>").html_safe %>
+	            </div>
+	            <%flash.discard(type) %>
+	          </div>
+	        <%end%>        
+	      <% end %>	  
+				<%= yield %>	
+			</div>	
+    </div>
+<!-- right part end -->
+
+  <!-- right ads section start -->
+  	<div class="ads-section ads-scroll-des">
+		<!-- <marquee direction="up"> -->
+		<ul>
+			<% for i in 6..10 %>
+				<li><%= image_tag("Adds/add#{i}.jpg",height: '100', width: '190') %></li>
+			<% end %>			
+		</ul>
+		<!-- </marquee> -->
+	</div>
+
+  <!-- right ads section end -->
+</div>
+  
+<div id="footermainPan">
+  <div id="footerPan">
+  	<ul>
+  	<li><a href="#">Home</a>| </li>
+  	<li><a href="#">About us</a> | </li>
+  	<li><a href="#">FAQs</a>| </li>
+  	<li><a href="#">Terms & Conditions </a> | </li>
+  	<li><a href="#">Privacy Policy</a> |</li>
+		<!-- <li><a href="#">Careers With Us</a> |</li> -->
+		<li><a href="#">Contact</a></li>
+	</ul>
+	<p class="copyright">©jobsite all right reaserved</p>	
+</div>
+<script>
+		function hideFlshDiv() {
+			document.getElementById('flash').style.display = 'none';
+		}
+</script>
+</body>
+</html>

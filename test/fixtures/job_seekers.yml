@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  offer_type: 1
+  mail_notifications: MyText
+  how_did_you_find_us: MyString
+  availble_to_start: 2014-06-14
+  employment_status: 1
+  graduation_year: 2014-06-14
+  city: MyString
+  state: 1
+  country: 1
+  highest_educaton: MyString
+  school: MyString
+  major: MyString
+  work_experience: 1
+  position_interested_in: 1
+  resume: MyString
+  resume_status: false
+  terms_and_conditions: false
+
+two:
+  offer_type: 1
+  mail_notifications: MyText
+  how_did_you_find_us: MyString
+  availble_to_start: 2014-06-14
+  employment_status: 1
+  graduation_year: 2014-06-14
+  city: MyString
+  state: 1
+  country: 1
+  highest_educaton: MyString
+  school: MyString
+  major: MyString
+  work_experience: 1
+  position_interested_in: 1
+  resume: MyString
+  resume_status: false
+  terms_and_conditions: false

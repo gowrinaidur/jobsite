@@ -1,0 +1,134 @@
+<%= nested_form_for [:admin ,@job_seeker], :html => {:multipart => true} do |f| %>  
+  <div class="new_admin_jobseeker_form">
+    <%= f.fields_for :user do |user_form| %>
+      <div class="field">
+        <%= user_form.label :first_name %>
+        <%= user_form.text_field :first_name , autofocus: true, class: "txt_field" %>
+      </div>
+      
+      <div class="field">
+        <%= user_form.label :last_name %>
+        <%= user_form.text_field :last_name, class: "txt_field" %>
+      </div>
+
+      <div class="field">
+        <%= user_form.label :email %>
+        <%= user_form.email_field :email, class: "txt_field" %>
+      </div>
+
+      <div class="field">
+        <%= user_form.label :username %>
+        <%= user_form.text_field :username, class: "txt_field" %>
+      </div>
+
+      <div class="field">
+        <%= user_form.label :password %>
+        <%= user_form.password_field :password, autocomplete: "off", class: "txt_field" %>
+      </div>
+
+      <div class="field">
+        <%= user_form.label :password_confirmation %>
+        <%= user_form.password_field :password_confirmation, autocomplete: "off", class: "txt_field" %>
+      </div>
+
+      <div class="field">
+        <%= user_form.label :phone %>
+        <%= user_form.text_field :phone, class: "txt_field" %>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :offer_type %>
+      <%= f.select :offer_type ,JobSeeker::OFFER_TYPE.invert, class: "txt_field" %>
+    </div>
+    
+    
+    <% email_checks = f.object.mail_notifications.reject(&:blank?).map(&:to_i) %>
+    <% JobSeeker::MAILNOTIFICATIONS.each do |mail,value| %>
+      <div class="field">
+        <span class-"txt_field"><%= check_box_tag "job_seeker[mail_notifications][]" ,mail,email_checks.include?(mail) %></span>
+        <%= f.label value%>      
+      </div>      
+    <% end %>
+    
+    <div class="field">
+      <%= f.label :how_did_you_find_us %>
+      <%= f.text_field :how_did_you_find_us, class: "txt_field" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :availble_to_start %>    
+      <%= f.text_field :availble_to_start %><%= calendar_for('job_seeker_availble_to_start') %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :employment_status %>
+      <%= f.select :employment_status ,JobSeeker::EMPLOYMENT_STATUS.invert %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :graduation_year %>    
+      <%= f.text_field :graduation_year %><%= calendar_for('job_seeker_graduation_year') %>
+    </div>
+    
+
+    <div class="field">
+      <%= f.label :country %>
+      <%= f.select :country_id,Country.all.map{|x| [x.name,x.id] } ,prompt: 'Select Country' %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :state %>
+      <%= f.select :state_id , [] ,prompt: 'Select State'%>
+    </div>
+    
+    <div class="field">
+      <%= f.label :city %>
+      <%= f.text_field :city %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :highest_education %>
+      <%= f.select :highest_education ,JobSeeker::HIGHEST_EDUCATION.invert %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :school %>
+      <%= f.text_field :school %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :major %>
+      <%= f.text_field :major %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :work_experience %>
+      <%= f.select :work_experience ,JobSeeker::WORK_EXPERIENCE.invert %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :position_interested_in %>
+      <%= f.select :position_interested_in , JobSeeker::POSITION_INTERSTED_IN.invert %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :resume %>
+      <%= f.file_field :resume %>
+    </div>
+    
+    <div class="field">
+      <%= f.check_box :resume_status %>
+      <%= f.label :resume_status %>
+    </div>
+    
+    <div class="field">
+      <%= f.check_box :terms_and_conditions %>
+      <%= f.label :terms_and_conditions %>
+    </div>
+    
+    <div class="submit-part">
+      <%= f.submit 'Save',class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
