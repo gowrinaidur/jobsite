@@ -175,6 +175,7 @@ box-shadow: 1px 1px white; }
 .form-box .submit-part { clear: both; text-align: center; }
 .form-box .row input[type="text"],
 .form-box .row input[type="password"],
+.form-box .row input[type="email"],
 .form-box .row textarea {
 	width: 200px;
 	padding: 3px;
